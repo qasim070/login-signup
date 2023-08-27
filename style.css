@@ -1,0 +1,15 @@
+.main{
+    height: 100vh;
+}
+
+.main-parent{
+    height: 500px;;
+}
+.my-col-left{
+    background-color: purple;
+
+}
+.my-col-right{
+    height: 500px;
+    
+}
