@@ -17,29 +17,30 @@
                    <div class="col-6 my-col-left">
                        <img class="img-fluid" src="img/sign-up-concept-illustration_114360-7865.avif" alt="">
                     </div>
-                    <div class="col-6 my-col-right signin-col">
+                   
+                    <div class="col-6 my-col-right" >
                         <div class="text-center toggle-div">
                             <span> Login </span>
                             <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox"  name="login" id="switch" onchange="switchForm()" >
                                 <span class="slider"></span>
                             </label>
                             <span> Sign up </span>
                         </div>
-                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                        <label for="myEmail" class="sr-only">Emter your Username or Email address</label>
-                        <input type="email" id="myEmail" class="form-control" placeholder="Email address"  autofocus="">
-                        <label for="myPassword" class="sr-only">Password</label>
-                        <input type="password" id="myPassword" class="form-control" placeholder="Password" >
-                        <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
+                        <div class="formDiv px-5" id="signin-col">
+                            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                            <label for="myEmail" class="sr-only">Emter your Username or Email address</label>
+                            <input type="email" id="myEmail" class="form-control" placeholder="Email address"  autofocus="">
+                            <label for="myPassword" class="sr-only">Password</label>
+                            <input type="password" id="myPassword" class="form-control" placeholder="Password" >
+                            <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block" onClick="login()" >Sign In</button>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block" onClick="login()" >Sign In</button>
-                    </div>
-                    <div class="col-12 my-col-right signup-col">
-                        <div class="formDiv px-5">
+                        <div class="formDiv px-5" id="signup-col">
                             <h1 class="h3 mb-3 font-weight-normal">Please Create Your Account</h1>
                             <label for="myUsername" class="sr-only">Username</label>
                             <input type="text" id="myUsername" class="form-control" placeholder="@Username"  autofocus="">
@@ -55,7 +56,7 @@
                             <button class="btn btn-lg btn-primary btn-block" onClick="signup()" >Create My Account</button>
                         </div>
                     </div>
-               </div>
+                    </div>
         </div>
 
     </div>

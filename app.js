@@ -32,5 +32,21 @@ function login(){
     console.log(users.email);
 }
 
+
+function switchForm(){
+
+    let checkbox = document.getElementById("switch");
+    let login = document.getElementById("signin-col");
+    let signup = document.getElementById("signup-col");
+    if (checkbox.checked == true) {
+       signup.style.display = 'block'
+       login.style.display = 'none'
+    }
+    else {
+        signup.style.display = 'none'
+        login.style.display = 'block'
+    }
+}
+
 // for(i)
 
