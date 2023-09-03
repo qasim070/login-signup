@@ -23,8 +23,7 @@ function signup(){
         }
     }
     
-   
-    // alert("Account Created Successfully")
+    alert("Account Created Successfully")
 }
 
 function login(){
