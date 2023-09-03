@@ -15,15 +15,15 @@ function signup(){
 
     if(!regEmail.includes("@")){
         emailError.innerHTML = "Please Enter a Valid Email Address";
-    }else if(regUsername === " "){
-        usernameError.innerHTML = "Value can not be empty";
+    }else{
+        user = {
+            username: regUsername,
+            email: regEmail,
+            pass: regPass
+        }
     }
     
-    user = {
-        username: regUsername,
-        email: regEmail,
-        pass: regPass
-    }
+   
     // alert("Account Created Successfully")
 }
 
