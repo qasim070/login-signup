@@ -30,6 +30,7 @@
                         <div class="formDiv px-5" id="signin-col">
                             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                             <label for="myEmail" class="sr-only">Emter your Username or Email address</label>
+                            
                             <input type="email" id="logEmail" class="form-control" placeholder="Email address"  autofocus="">
                             <label for="myPassword" class="sr-only">Password</label>
                             <input type="password" id="logPassword" class="form-control" placeholder="Password" >
@@ -44,10 +45,13 @@
                             <h1 class="h3 mb-3 font-weight-normal">Please Create Your Account</h1>
                             <label for="myUsername" class="sr-only">Username</label>
                             <input type="text" id="myUsername" class="form-control" placeholder="@Username"  autofocus="">
+                            <span id="errorUsername" class="text-danger"></span><br>
                             <label for="myEmail" class="sr-only">Email address</label>
                             <input type="email" id="myEmail" class="form-control" placeholder="Email address"  autofocus="">
+                            <span id="errorEmail" class="text-danger"></span> <br>
                             <label for="myPassword" class="sr-only">Password</label>
                             <input type="password" id="myPassword" class="form-control" placeholder="Password" >
+                            <span id="errorPass" class="text-danger"></span><br>
                             <div class="checkbox mb-3">
                               <label>
                                 <input type="checkbox" value="remember-me"> Remember me

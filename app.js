@@ -1,8 +1,5 @@
 
-let users = {
-    email: "han@gmail.com",
-    username: "han",
-    password: "123"
+let user = {
 }
 
 function signup(){
@@ -11,27 +8,35 @@ function signup(){
     let regUsername = document.getElementById("myUsername").value;
     let regEmail = document.getElementById("myEmail").value;
     let regPass = document.getElementById("myPassword").value;
+    let usernameError = document.getElementById("errorUsername");
+    let emailError = document.getElementById("errorEmail");
+    let passError = document.getElementById("errorPass");
+
+
+    if(!regEmail.includes("@")){
+        emailError.innerHTML = "Please Enter a Valid Email Address";
+    }else if(regUsername === " "){
+        usernameError.innerHTML = "Value can not be empty";
+    }
     
     user = {
         username: regUsername,
         email: regEmail,
         pass: regPass
-
     }
-    console.log(user)
-    
-// window.location('login.html')
+    // alert("Account Created Successfully")
 }
 
 function login(){
-    // let logUsername = document.getElementById("myUsername").value;
-    // let logEmail = document.getElementById("myEmail").value;
-    // let logPass = document.getElementById("myPassword").value;
+    let logEmail = document.getElementById("logEmail").value;
+    let logPass = document.getElementById("logPassword").value;
+    if((user.email === logEmail || user.username === logEmail ) && user.pass === logPass){
+        alert("Login Successful")
+    }else{
+        alert("Please Check your Username or Password")
+    }
 
-    console.log(user.username)
-    console.log(users.email);
 }
-
 
 function switchForm(){
 
