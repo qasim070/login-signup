@@ -1,10 +1,9 @@
 
-let user = {
-}
-
+let latestUsers = []
 function signup(){
+    swal('Title', 'Message', 'type')
     // e.preventDefault();
-
+    
     let regUsername = document.getElementById("myUsername").value;
     let regEmail = document.getElementById("myEmail").value;
     let regPass = document.getElementById("myPassword").value;
@@ -16,14 +15,19 @@ function signup(){
     if(!regEmail.includes("@")){
         emailError.innerHTML = "Please Enter a Valid Email Address";
     }else{
-        user = {
+        latestUsers.push() = {
             username: regUsername,
             email: regEmail,
             pass: regPass
         }
+        localStorage.setItem("users" , JSON.stringify(latestUser))
+            Swal.fire({
+                icon: 'info',
+                title: 'Account Created',
+                text: 'Account Created Successfully'
+              })
     }
-    
-    alert("Account Created Successfully")
+    console.log(user)
 }
 
 function login(){
@@ -33,6 +37,8 @@ function login(){
         alert("Login Successful")
     }else{
         alert("Please Check your Username or Password")
+        let checkbox = document.getElementById("switch")
+        checkbox.checked == true;
     }
 
 }
@@ -51,6 +57,3 @@ function switchForm(){
         login.style.display = 'block'
     }
 }
-
-// for(i)
-
