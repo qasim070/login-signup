@@ -1,7 +1,6 @@
 
 let latestUsers = []
 function signup(){
-    swal('Title', 'Message', 'type')
     // e.preventDefault();
     
     let regUsername = document.getElementById("myUsername").value;
@@ -11,24 +10,28 @@ function signup(){
     let emailError = document.getElementById("errorEmail");
     let passError = document.getElementById("errorPass");
 
+    if(regEmail.includes("@")){
+        emailError.innerHTML = "";
+    }
 
     if(!regEmail.includes("@")){
         emailError.innerHTML = "Please Enter a Valid Email Address";
-    }else{
-        latestUsers.push() = {
-            username: regUsername,
-            email: regEmail,
-            pass: regPass
-        }
-        localStorage.setItem("users" , JSON.stringify(latestUser))
-            Swal.fire({
-                icon: 'info',
-                title: 'Account Created',
-                text: 'Account Created Successfully'
-              })
     }
-    console.log(user)
-}
+    if(regPass.length < 8){
+        passError.innerHTML = "Password length must be greater than 8 characters";
+    }
+    else{
+        latestUsers.push({
+            email : regEmail,
+            password : regPass,
+        })
+        localStorage.setItem('usersList', JSON.stringify(latestUsers));
+            alert("Account Created Successfuly")
+        }
+          
+        console.log(user)
+    }
+// }
 
 function login(){
     let logEmail = document.getElementById("logEmail").value;
