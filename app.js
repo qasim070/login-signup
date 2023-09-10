@@ -25,24 +25,36 @@ function signup(){
             email : regEmail,
             password : regPass,
         })
-        localStorage.setItem('usersList', JSON.stringify(latestUsers));
+            localStorage.setItem('usersList', JSON.stringify(latestUsers))
+            regEmail = "";
+            regPass = "";
+            regUsername = "";
             alert("Account Created Successfuly")
         }
-          
-        console.log(user)
     }
-// }
 
 function login(){
-    let logEmail = document.getElementById("logEmail").value;
-    let logPass = document.getElementById("logPassword").value;
-    if((user.email === logEmail || user.username === logEmail ) && user.pass === logPass){
-        alert("Login Successful")
-    }else{
-        alert("Please Check your Username or Password")
-        let checkbox = document.getElementById("switch")
-        checkbox.checked == true;
+    let logEmail = document.getElementById("logEmail");
+    let logPass = document.getElementById("logPassword");
+    let fetchData = JSON.parse(localStorage.getItem('usersList'))
+    let checkUser = fetchData.find( e => e.email == logEmail.value && e.password == logPass.value)
+    if(!checkUser){
+        alert("Incorrect Password or Email")
     }
+    // else if( check.password != logPass.value){
+    //     alert("Incorrect Password")
+    // }
+    else{
+        window.document.location = "./"
+    }
+    // alert(check)
+    // if((user.email === logEmail || user.username === logEmail ) && user.pass === logPass){
+    //     alert("Login Successful")
+    // }else{
+    //     alert("Please Check your Username or Password")
+    //     let checkbox = document.getElementById("switch")
+    //     checkbox.checked == true;
+    // }
 
 }
 
