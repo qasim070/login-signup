@@ -6,7 +6,7 @@ function signup(){
     let regUsername = document.getElementById("myUsername").value;
     let regEmail = document.getElementById("myEmail").value;
     let regPass = document.getElementById("myPassword").value;
-    let usernameError = document.getElementById("errorUsername");
+    // let usernameError = document.getElementById("errorUsername");
     let emailError = document.getElementById("errorEmail");
     let passError = document.getElementById("errorPass");
 
