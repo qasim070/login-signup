@@ -77,7 +77,7 @@ function alertfunction() {
     
     // alert("sweet incoming");
     swal({
-        icon: "error",
+        icon: "success",
         title: "Good job!",
         text: "You clicked the button!",
       });
