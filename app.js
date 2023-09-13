@@ -72,3 +72,13 @@ function switchForm(){
         login.style.display = 'block'
     }
 }
+
+function alertfunction() {
+    
+    // alert("sweet incoming");
+    swal({
+        icon: "error",
+        title: "Good job!",
+        text: "You clicked the button!",
+      });
+}
