@@ -29,7 +29,16 @@ function signup(){
             regEmail = "";
             regPass = "";
             regUsername = "";
-            alert("Account Created Successfuly")
+            swal({
+                icon: "success",
+                title: "Account Created Successfuly",
+                showCancelButton: true,
+                showConfirmButton: true,
+                confirmButtonText: "Redirect to Dashboard",   
+                closeOnConfirm: true 
+                }, function() {
+                    window.location = '/';
+                });
         }
     }
 
@@ -38,15 +47,27 @@ function login(){
     let logPass = document.getElementById("logPassword");
     let fetchData = JSON.parse(localStorage.getItem('usersList'))
     let checkUser = fetchData.find( e => e.email == logEmail.value && e.password == logPass.value)
-    if(!checkUser){
-        alert("Incorrect Password or Email")
+    if(logEmail.value === undefined && logPass.value === undefined){
+        swal({
+            icon: "warning",
+            title: "Incorrect Credentials",
+            text: "Please Check the email pr Password",
+          });
+
+        if(!checkUser){
+            swal({
+                icon: "error",
+                title: "Incorrect Credentials",
+                text: "Please Check the email pr Password",
+              });
+        }else{
+            window.document.location = "./"
+        }
     }
     // else if( check.password != logPass.value){
     //     alert("Incorrect Password")
     // }
-    else{
-        window.document.location = "./"
-    }
+    
     // alert(check)
     // if((user.email === logEmail || user.username === logEmail ) && user.pass === logPass){
     //     alert("Login Successful")
