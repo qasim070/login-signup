@@ -1,17 +1,18 @@
 
-let latestUsers = []
+// let latestUsers = []
+let latestUsers = [];
 function signup(event){
     event.preventDefault();
-
-    
+  
     let regUsername = document.getElementById("myUsername").value;
     let regEmail = document.getElementById("myEmail").value;
     let regPass = document.getElementById("myPassword").value;
     let emailError = document.getElementById("errorEmail");
     let passError = document.getElementById("errorPass");
-    let fetchData = JSON.parse(localStorage.getItem('usersList'))
-    let checkPrevData = fetchData.find( e => e.email == regEmail.value)
-    alert(checkPrevData)
+    let fetchData = JSON.parse(localStorage.getItem('userList'))
+
+    //let checkPrevData = fetchData.find( e => e.email == regEmail.value)
+   // alert(checkPrevData)
 
     if(regUsername == ""  || regEmail == "" || regPass == "" ){
         swal({
@@ -19,47 +20,46 @@ function signup(event){
             title: "Don't Leave anything Empty",
             });
     }else{
-
-        if(regEmail.includes("@")){
-            emailError.innerHTML = "";
-        }
         if(!regEmail.includes("@")){
             emailError.innerHTML = "Please Enter a Valid Email Address";
         }
         if(regPass.length < 8){
             passError.innerHTML = "Password length must be greater than 8 characters";
-        }
-        // else{
-            if(checkPrevData){
-                alert("ij");
-            }else{
+        }else{
+            if (JSON.parse(localStorage.getItem('userList')) == null) {
                 latestUsers.push({
                     username: regUsername,
                     email : regEmail,
                     password : regPass,
                 })
-                    if(localStorage.setItem('usersList', JSON.stringify(latestUsers))){
-                        swal({
-                            icon: "success",
-                            title: "Account Created Successfuly",
-                            showCancelButton: true,
-                            showConfirmButton: true,
-                            confirmButtonText: "Redirecting you to Dashboard",   
-                            closeOnConfirm: true 
-                            }, function() {
-                                window.location = '/';
-                            });
+                localStorage.setItem('userList',JSON.stringify(latestUsers));
+            } else {
+                let checkUser = fetchData.find(e => e.email == regEmail)
+                if(checkUser){
+                    swal({
+                        icon: "warning",
+                        title: "User Alredy Exist with this Email ",
+                        });
+                }else{
+                    latestUsers = JSON.parse(localStorage.getItem('userList'))
+                    latestUsers.push({
+                        username: regUsername,
+                        email : regEmail,
+                        password : regPass,
+                    })
+                    localStorage.setItem('userList',JSON.stringify(latestUsers));
+                    window.document.location = "dashboard.html";
+                }
+
                     }
                 }
-         
-                // }
         }
     }
 
 function login(){
     let logEmail = document.getElementById("logEmail");
     let logPass = document.getElementById("logPassword");
-    let fetchData = JSON.parse(localStorage.getItem('usersList'))
+    let fetchData = JSON.parse(localStorage.getItem('userList'))
     if(logEmail.value == "" || logPass == ""  ){
         swal({
             icon: "warning",
@@ -75,21 +75,11 @@ function login(){
                 text: "Please Check the email or Password",
               });
         }else{
-            window.document.location = "./";
+            // let displayName = JSON.stringify(fetchData.filter( e => e.username));
+            // alert("Welcome " + displayName)
+            window.document.location = "dashboard.html";
         }
     }
-    // else if( check.password != logPass.value){
-    //     alert("Incorrect Password")
-    // }
-    
-    // alert(check)
-    // if((user.email === logEmail || user.username === logEmail ) && user.pass === logPass){
-    //     alert("Login Successful")
-    // }else{
-    //     alert("Please Check your Username or Password")
-    //     let checkbox = document.getElementById("switch")
-    //     checkbox.checked == true;
-    // }
 
 }
 
