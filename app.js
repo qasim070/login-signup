@@ -9,7 +9,8 @@ function signup(event){
     let regPass = document.getElementById("myPassword").value;
     let emailError = document.getElementById("errorEmail");
     let passError = document.getElementById("errorPass");
-    let fetchData = JSON.parse(localStorage.getItem('userList'))
+    let fetchData = JSON.parse(localStorage.getItem('userList'));
+    let userId = 1000;
 
     //let checkPrevData = fetchData.find( e => e.email == regEmail.value)
    // alert(checkPrevData)
@@ -28,11 +29,14 @@ function signup(event){
         }else{
             if (JSON.parse(localStorage.getItem('userList')) == null) {
                 latestUsers.push({
+                    userId ,
                     username: regUsername,
                     email : regEmail,
                     password : regPass,
                 })
                 localStorage.setItem('userList',JSON.stringify(latestUsers));
+                // localStorage.setItem('userNameForLogin',JSON.stringify(latestUsers.email));
+
             } else {
                 let checkUser = fetchData.find(e => e.email == regEmail)
                 if(checkUser){
@@ -41,13 +45,17 @@ function signup(event){
                         title: "User Alredy Exist with this Email ",
                         });
                 }else{
+
                     latestUsers = JSON.parse(localStorage.getItem('userList'))
                     latestUsers.push({
+                        userId ,
                         username: regUsername,
                         email : regEmail,
                         password : regPass,
                     })
                     localStorage.setItem('userList',JSON.stringify(latestUsers));
+                    // localStorage.setItem('userNameForLogin',JSON.stringify(latestUsers));
+
                     window.document.location = "dashboard.html";
                 }
 
@@ -67,8 +75,15 @@ function login(){
             text: "Email or Password Field is empty",
         });
     }else{
+        let checkUserExist = fetchData.find( e => e.email == logEmail.value)
         let checkUser = fetchData.find( e => e.email == logEmail.value && e.password == logPass.value)
-        if(!checkUser){
+        if(checkUserExist == null){
+            swal({
+                icon: "warning",
+                title: "This Email Doesn't Exist in our Record",
+                text: "Please check the your email",
+              });
+        }else if(!checkUser){
             swal({
                 icon: "error",
                 title: "Incorrect Credentials",
@@ -95,5 +110,18 @@ function switchForm(){
     else {
         signup.style.display = 'none'
         login.style.display = 'block'
+    }
+}
+
+function addToDo(){
+    let toDoItem = document.getElementById("toDoVal");
+    if(toDoItem.value.trim() == ""){
+        swal({
+            icon: "warning",
+            title: "It can not be empty",
+            text: "Please enter something",
+          });
+    }else{
+
     }
 }

@@ -1,7 +1,27 @@
+* {
+  font-family: 'Lexend', sans-serif !important;
+}
+.font-basker{
+  font-family: 'Libre Baskerville', serif !important;
+  font-style: italic;
+}
+.card-header label{
+  font-weight: 300 !important;
+}
+.card-footer{
+  font-weight: 300 !important;
+}
 .main{
     height: 100vh;
 }
-
+button , input {
+  box-shadow: none !important;
+  outline: none !important;
+}
+button:focus , button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
 .main-parent{
     height: 500px;;
 }
@@ -15,8 +35,7 @@
 }
 
 
-/* checkbox css */
-/* The switch - the box around the slider */
+/* Form switch CSS */
 .switch {
     position: relative;
     display: inline-block;
@@ -24,14 +43,12 @@
     height: 34px;
   }
   
-  /* Hide default HTML checkbox */
   .switch input {
     opacity: 0;
     width: 0;
     height: 0;
   }
   
-  /* The slider */
   .slider {
     position: absolute;
     cursor: pointer;

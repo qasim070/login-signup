@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;300;400;500;700;900&amp;family=Libre+Baskerville:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -11,13 +12,44 @@
 </head>
 <body>
 
+    <header class="bg-dark text-center text-white py-4">
+        <div class="container">
+              <h1>  ToDo Application With Authentication</h1>
+               <h3 id="username " class="font-basker"><script>
+                // document.write(JSON.parse(localStorage.getItem('userNameForLogin')));
+               </script>
+               </h3>
+               
+               
+        </div>
+    </header>
     <div class="container">
         
-        <div class="card main d-flex align-items-center justify-content-center">
-            <div class="main-parent">
-                Add your ToDos
+        <!-- <div class="card main d-flex align-items-center justify-content-center"> -->
+            <div id="myMain" class="container-sm mt-4">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <div class=" mb-3 d-flex justify-content-between add-responsive-btn">
+                           <div class="form-floating my-1  w-100">
+                                <input type="text" class="form-control " id="toDoVal" placeholder="Add Your Tasks To Do!">
+                                <label for="floatingInput"> Add Your Tasks To Do!</label> 
+                           </div>
+                            <button class="btn btn-primary mx-2 my-1 px-3" onclick="addToDo()">   +Add</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul id="list">
+        
+                        </ul>
+                        
+                        
+                    </div>
+                    <div class="card-footer">
+                        Design & Developed By &copy; <a target="_blank" href="https://www.linkedin.com/in/qasim-ali-2419161a9/" class="btn btn-link">Muhammad Qasim</a>
+                    </div>
+                </div>
             </div>
-        </div>
+        <!-- </div> -->
 
     </div>
     
