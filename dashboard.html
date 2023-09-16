@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome 4/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;300;400;500;700;900&amp;family=Libre+Baskerville:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -31,13 +32,15 @@
             <div id="myMain" class="container-sm mt-4">
                 <div class="card text-center">
                     <div class="card-header">
-                        <div class=" mb-3 d-flex justify-content-between add-responsive-btn">
-                           <div class="form-floating my-1  w-100">
-                                <input type="text" class="form-control " id="toDoVal" placeholder="Add Your Tasks To Do!">
-                                <label for="floatingInput"> Add Your Tasks To Do!</label> 
-                           </div>
-                            <button class="btn btn-primary mx-2 my-1 px-3" onclick="addToDo()">   +Add</button>
-                        </div>
+                        <form action="">
+                            <div class=" mb-3 d-flex justify-content-between add-responsive-btn">
+                                <div class="form-floating my-1  w-100">
+                                        <input type="text" class="form-control " id="toDoVal" placeholder="Add Your Tasks To Do!">
+                                        <label for="floatingInput"> Add Your Tasks To Do!</label> 
+                                </div>
+                                <button class="btn btn-primary mx-2 my-1 px-3" onclick="addToDo(event)">   +Add</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="card-body">
                         <ul id="list">

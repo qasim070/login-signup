@@ -35,6 +35,8 @@ function signup(event){
                     password : regPass,
                 })
                 localStorage.setItem('userList',JSON.stringify(latestUsers));
+                window.document.location = "dashboard.html";
+
                 // localStorage.setItem('userNameForLogin',JSON.stringify(latestUsers.email));
 
             } else {
@@ -86,6 +88,7 @@ function login(){
             text: "Email or Password Field is empty",
         });
     }else{
+
         let checkUserExist = fetchData.find( e => e.email == logEmail.value)
         let checkUser = fetchData.find( e => e.email == logEmail.value && e.password == logPass.value)
         let getUsername = fetchData.find( e => e.username)
@@ -129,18 +132,76 @@ function switchForm(){
     }
 }
 let toDoItemList = [];
-function addToDo(){
+window.onload = function () {
+    displayTodo();
+};
+
+
+
+
+
+function addToDo(event) {
+    event.preventDefault();
+    let toDoItemList = JSON.parse(localStorage.getItem('todoList')) || [];
+
+    let lastId = toDoItemList.length > 0 ? toDoItemList[toDoItemList.length - 1].todoId : 0;
+    let newId = lastId + 1;
     let toDoItem = document.getElementById("toDoVal");
-    if(toDoItem.value.trim() == ""){
+
+    if (toDoItem.value.trim() == "") {
         swal({
             icon: "warning",
-            title: "It can not be empty",
+            title: "It cannot be empty",
             text: "Please enter something",
-          });
-    }else{
+        });
+    } else {
         toDoItemList.push({
+            todoId: newId,
             toDo: toDoItem.value
-        })
-        localStorage.setItem('todoList',JSON.stringify(toDoItemList));
+        });
+        localStorage.setItem('todoList', JSON.stringify(toDoItemList));
+        toDoItem.value = "";
+        displayTodo();
     }
+}
+
+function displayTodo() {
+    let fetchTask = JSON.parse(localStorage.getItem('todoList')); 
+    let ul = document.getElementById("list");
+    ul.innerHTML = "";
+
+    fetchTask.forEach((item) => {
+        let createDel = document.createElement("button");
+        let toDo = item.toDo;
+        let createLi = document.createElement("li");
+        let createP = document.createElement("p");
+        createDel.innerHTML = "<i class='fa fa-trash-o'></i>" + " Delete";
+        createLi.appendChild(createDel);
+        createDel.setAttribute("class" , "btn btn-danger")
+        createDel.setAttribute("onclick" , "removeTodo(this)")
+        createP.textContent = toDo;
+        createLi.setAttribute("id", "liText");
+        createLi.appendChild(createP);
+        ul.appendChild(createLi);
+    });
+}
+function removeTodo(e){
+    
+    // confirm("Are you sure you want to delete? " + e.parentNode.lastChild.innerHTML  )
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
 }
