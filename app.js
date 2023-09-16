@@ -10,7 +10,7 @@ function signup(event){
     let emailError = document.getElementById("errorEmail");
     let passError = document.getElementById("errorPass");
     let fetchData = JSON.parse(localStorage.getItem('userList'));
-    let userId = 1000;
+    let FirstuserId = 1000  ;
 
     //let checkPrevData = fetchData.find( e => e.email == regEmail.value)
    // alert(checkPrevData)
@@ -29,7 +29,7 @@ function signup(event){
         }else{
             if (JSON.parse(localStorage.getItem('userList')) == null) {
                 latestUsers.push({
-                    userId ,
+                    userId: FirstuserId ,
                     username: regUsername,
                     email : regEmail,
                     password : regPass,
@@ -39,23 +39,34 @@ function signup(event){
 
             } else {
                 let checkUser = fetchData.find(e => e.email == regEmail)
+                let getUsername = fetchData.find( e => e.username)
+                if(getUsername){
+                    let passUsernametoDOM = getUsername;
+                    localStorage.setItem('userNameForLogin',JSON.stringify(passUsernametoDOM.username));
+                }
                 if(checkUser){
                     swal({
                         icon: "warning",
                         title: "User Alredy Exist with this Email ",
                         });
                 }else{
-
+                    
                     latestUsers = JSON.parse(localStorage.getItem('userList'))
+                    let len = latestUsers.length-1;
+                    let newUserId =  latestUsers[len].userId + 1;
                     latestUsers.push({
-                        userId ,
+                        userId : newUserId,
                         username: regUsername,
                         email : regEmail,
                         password : regPass,
                     })
                     localStorage.setItem('userList',JSON.stringify(latestUsers));
-                    // localStorage.setItem('userNameForLogin',JSON.stringify(latestUsers));
+                    // swal({
+                    //     icon: "success",
+                    //     title: "Redirecting you to the Dashboard ",
+                    //     timer: 2000,
 
+                    //     });
                     window.document.location = "dashboard.html";
                 }
 
@@ -77,17 +88,22 @@ function login(){
     }else{
         let checkUserExist = fetchData.find( e => e.email == logEmail.value)
         let checkUser = fetchData.find( e => e.email == logEmail.value && e.password == logPass.value)
+        let getUsername = fetchData.find( e => e.username)
+        if(getUsername){
+            let passUsernametoDOM = getUsername;
+            localStorage.setItem('userNameForLogin',JSON.stringify(passUsernametoDOM.username));
+        }
         if(checkUserExist == null){
             swal({
                 icon: "warning",
                 title: "This Email Doesn't Exist in our Record",
-                text: "Please check the your email",
+                text: "Please check your email",
               });
         }else if(!checkUser){
             swal({
                 icon: "error",
                 title: "Incorrect Credentials",
-                text: "Please Check the email or Password",
+                text: "Please Check email or Password",
               });
         }else{
             // let displayName = JSON.stringify(fetchData.filter( e => e.username));
@@ -112,7 +128,7 @@ function switchForm(){
         login.style.display = 'block'
     }
 }
-
+let toDoItemList = [];
 function addToDo(){
     let toDoItem = document.getElementById("toDoVal");
     if(toDoItem.value.trim() == ""){
@@ -122,6 +138,9 @@ function addToDo(){
             text: "Please enter something",
           });
     }else{
-
+        toDoItemList.push({
+            toDo: toDoItem.value
+        })
+        localStorage.setItem('todoList',JSON.stringify(toDoItemList));
     }
 }
