@@ -88,13 +88,20 @@ function login(){
             text: "Email or Password Field is empty",
         });
     }else{
-
+        let  LoginSession =  []
         let checkUserExist = fetchData.find( e => e.email == logEmail.value)
         let checkUser = fetchData.find( e => e.email == logEmail.value && e.password == logPass.value)
         let getUsername = fetchData.find( e => e.username)
         if(getUsername){
-            let passUsernametoDOM = getUsername;
-            localStorage.setItem('userNameForLogin',JSON.stringify(passUsernametoDOM.username));
+            
+            let saveUsername = getUsername.username;
+            let saveUserId = getUsername.userId;
+            LoginSession.push({
+                saveUserId,
+                saveUsername
+            })
+
+            localStorage.setItem('userNameForLogin',JSON.stringify(LoginSession));
         }
         if(checkUserExist == null){
             swal({
@@ -175,9 +182,9 @@ function displayTodo() {
         let toDo = item.toDo;
         let createLi = document.createElement("li");
         let createP = document.createElement("p");
-        createDel.innerHTML = "<i class='fa fa-trash-o'></i>" + " Delete";
+        createDel.innerHTML = "<span class='material-symbols-outlined'>delete_forever</span>" + " Delete";
         createLi.appendChild(createDel);
-        createDel.setAttribute("class" , "btn btn-danger")
+        createDel.setAttribute("class" , "btn btn-danger myIconBtn")
         createDel.setAttribute("onclick" , "removeTodo(this)")
         createP.textContent = toDo;
         createLi.setAttribute("id", "liText");

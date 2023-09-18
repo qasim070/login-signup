@@ -1,6 +1,9 @@
-* {
+/* * {
   font-family: 'Lexend', sans-serif !important;
-}
+}  
+.fa {
+  font-family: 'FontAwesome', Arial, sans-serif !important;
+} */
 .font-basker{
   font-family: 'Libre Baskerville', serif !important;
   font-style: italic;
@@ -108,4 +111,10 @@ ul#list li#liText p {
 ul#list li#liText button{
   flex-grow:1 ;
   margin: 0px 10px;
+}
+
+button.myIconBtn{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
