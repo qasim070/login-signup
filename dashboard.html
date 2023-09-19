@@ -20,7 +20,9 @@
                 Welcome 
 
                 <script>
-                document.write(localStorage.getItem('userNameForLogin'));
+                    let getdata = JSON.parse(localStorage.getItem('userNameForLogin'))
+                    let getUsername = getdata
+                    document.write(getUsername[0].saveUsername);
                </script>
                </h3>
                
@@ -43,7 +45,8 @@
                             </div>
                         </form>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="manageheight">
+                        <div id="noData"></div>
                         <ul id="list">
         
                         </ul>

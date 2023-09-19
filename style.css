@@ -118,3 +118,16 @@ button.myIconBtn{
   align-items: center;
   justify-content: space-evenly;
 }
+.card-body {
+
+  overflow-y: scroll;
+}
+div#noData {
+  display: flex;
+  justify-content: center;
+}
+div#noData span {
+  color: #b50000;
+  margin: 0 10px;
+  font-size: 25px;
+}

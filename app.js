@@ -149,7 +149,10 @@ window.onload = function () {
 
 function addToDo(event) {
     event.preventDefault();
+    let fetchData = JSON.parse(localStorage.getItem('userList')) || [];
     let toDoItemList = JSON.parse(localStorage.getItem('todoList')) || [];
+    let getUserId = fetchData.find( e => e.userId)
+    // let saveUserId = getUsername.userId;
 
     let lastId = toDoItemList.length > 0 ? toDoItemList[toDoItemList.length - 1].todoId : 0;
     let newId = lastId + 1;
@@ -163,6 +166,7 @@ function addToDo(event) {
         });
     } else {
         toDoItemList.push({
+            userId: getUserId.userId,
             todoId: newId,
             toDo: toDoItem.value
         });
@@ -174,23 +178,30 @@ function addToDo(event) {
 
 function displayTodo() {
     let fetchTask = JSON.parse(localStorage.getItem('todoList')); 
+    let fetchId = JSON.parse(localStorage.getItem('userNameForLogin')); 
     let ul = document.getElementById("list");
-    ul.innerHTML = "";
-
-    fetchTask.forEach((item) => {
-        let createDel = document.createElement("button");
-        let toDo = item.toDo;
-        let createLi = document.createElement("li");
-        let createP = document.createElement("p");
-        createDel.innerHTML = "<span class='material-symbols-outlined'>delete_forever</span>" + " Delete";
-        createLi.appendChild(createDel);
-        createDel.setAttribute("class" , "btn btn-danger myIconBtn")
-        createDel.setAttribute("onclick" , "removeTodo(this)")
-        createP.textContent = toDo;
-        createLi.setAttribute("id", "liText");
-        createLi.appendChild(createP);
-        ul.appendChild(createLi);
-    });
+    let noData = document.getElementById("noData");
+    let divHeight = document.getElementById("manageheight");
+    if(!fetchTask){
+        noData.innerHTML = "<span class='material-symbols-outlined'>error</span>"+"No Data to Display";
+    }else{
+        noData.innerHTML = "";
+        divHeight.style.height = "100vh";
+        fetchTask.forEach((item) => {
+            let createDel = document.createElement("button");
+            let toDo = item.toDo;
+            let createLi = document.createElement("li");
+            let createP = document.createElement("p");
+            createDel.innerHTML = "<span class='material-symbols-outlined'>delete_forever</span>" + " Delete";
+            createLi.appendChild(createDel);
+            createDel.setAttribute("class" , "btn btn-danger myIconBtn")
+            createDel.setAttribute("onclick" , "removeTodo(this)")
+            createP.textContent = toDo;
+            createLi.setAttribute("id", "liText");
+            createLi.appendChild(createP);
+            ul.appendChild(createLi);
+        });
+    }
 }
 function removeTodo(e){
     
