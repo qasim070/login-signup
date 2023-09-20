@@ -36,10 +36,14 @@ function signup(event){
                 })
                 localStorage.setItem('userList',JSON.stringify(latestUsers));
                 window.document.location = "dashboard.html";
-
-                // localStorage.setItem('userNameForLogin',JSON.stringify(latestUsers.email));
-
+                let  LoginSession =  []
+                    LoginSession.push({
+                        saveUserId: FirstuserId ,
+                        saveUsername:regUsername
+                    })
+                    localStorage.setItem('userNameForLogin',JSON.stringify(LoginSession));
             } else {
+
                 let checkUser = fetchData.find(e => e.email == regEmail)
                 let getUsername = fetchData.find( e => e.username)
                 if(getUsername){
@@ -63,13 +67,14 @@ function signup(event){
                         password : regPass,
                     })
                     localStorage.setItem('userList',JSON.stringify(latestUsers));
-                    // swal({
-                    //     icon: "success",
-                    //     title: "Redirecting you to the Dashboard ",
-                    //     timer: 2000,
-
-                    //     });
-                    window.document.location = "dashboard.html";
+                    let  LoginSession =  []
+                    // let getUsername = fetchData.find( e => e.username)
+                        LoginSession.push({
+                            saveUserId:newUserId ,
+                            saveUsername:regUsername
+                        })
+                        localStorage.setItem('userNameForLogin',JSON.stringify(LoginSession));
+                        window.document.location = "dashboard.html";
                 }
 
                     }
@@ -149,9 +154,9 @@ window.onload = function () {
 
 function addToDo(event) {
     event.preventDefault();
-    let fetchData = JSON.parse(localStorage.getItem('userList')) || [];
+    let fetchData = JSON.parse(localStorage.getItem('userNameForLogin')) || [];
     let toDoItemList = JSON.parse(localStorage.getItem('todoList')) || [];
-    let getUserId = fetchData.find( e => e.userId)
+    let getUserId = fetchData.find( e => e.saveUserId)
     // let saveUserId = getUsername.userId;
 
     let lastId = toDoItemList.length > 0 ? toDoItemList[toDoItemList.length - 1].todoId : 0;
@@ -166,7 +171,7 @@ function addToDo(event) {
         });
     } else {
         toDoItemList.push({
-            userId: getUserId.userId,
+            userId: getUserId.saveUserId,
             todoId: newId,
             toDo: toDoItem.value
         });
@@ -188,18 +193,22 @@ function displayTodo() {
         noData.innerHTML = "";
         divHeight.style.height = "100vh";
         fetchTask.forEach((item) => {
-            let createDel = document.createElement("button");
-            let toDo = item.toDo;
-            let createLi = document.createElement("li");
-            let createP = document.createElement("p");
-            createDel.innerHTML = "<span class='material-symbols-outlined'>delete_forever</span>" + " Delete";
-            createLi.appendChild(createDel);
-            createDel.setAttribute("class" , "btn btn-danger myIconBtn")
-            createDel.setAttribute("onclick" , "removeTodo(this)")
-            createP.textContent = toDo;
-            createLi.setAttribute("id", "liText");
-            createLi.appendChild(createP);
-            ul.appendChild(createLi);
+            let checkId = getUsername[0].saveUserId;
+            if(checkId === item.userId){
+                let createDel = document.createElement("button");
+                let toDo = item.toDo;
+                let createLi = document.createElement("li");
+                let createP = document.createElement("p");
+                createDel.innerHTML = "<span class='material-symbols-outlined'>delete_forever</span>" + " Delete";
+                createLi.appendChild(createDel);
+                createDel.setAttribute("class" , "btn btn-danger myIconBtn")
+                createDel.setAttribute("onclick" , "removeTodo(this)")
+                createP.textContent = toDo  ;
+                createLi.setAttribute("id", "liText");
+                createLi.appendChild(createP);
+                ul.appendChild(createLi);
+            }
+
         });
     }
 }
