@@ -206,6 +206,12 @@ function displayTodo() {
                 createP.textContent = toDo  ;
                 createLi.setAttribute("id", "liText");
                 createLi.appendChild(createP);
+                let createBox = document.createElement("INPUT");
+                createBox.setAttribute("type", "checkbox");
+                createBox.setAttribute("class" , "mx-2 mb-2")
+                createBox.setAttribute("onclick" , "changeStatus()")
+                createLi.appendChild(createBox)
+
                 ul.appendChild(createLi);
             }
 
@@ -213,22 +219,43 @@ function displayTodo() {
     }
 }
 function removeTodo(e){
+    let fetchData = JSON.parse(localStorage.getItem('userNameForLogin')) || [];
+    let toDoItemList = JSON.parse(localStorage.getItem('todoList')) || [];
+    
     
     // confirm("Are you sure you want to delete? " + e.parentNode.lastChild.innerHTML  )
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this imaginary file!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          swal("Poof! Your imaginary file has been deleted!", {
-            icon: "success",
-          });
-        } else {
-          swal("Your imaginary file is safe!");
+    // swal({
+    //     title: "Are you sure?",
+    //     text: "Once deleted, you will not be able to recover this imaginary file!",
+    //     icon: "warning",
+    //     buttons: true,
+    //     dangerMode: true,
+    //   })
+    //   .then((willDelete) => {
+    //     if (willDelete) {
+    //       swal("Poof! Your imaginary file has been deleted!", {
+    //         icon: "success",
+    //       });
+    //     } else {
+    //       swal("Your imaginary file is safe!");
+    //     }
+    //   });
+}
+
+function deleteAll(){
+    let fetchData = JSON.parse(localStorage.getItem("userNameForLogin"))
+    let fetchTodo = JSON.parse(localStorage.getItem("todoList"))
+    let findLoginId = fetchData.find(e => e.saveUserId)
+    let findUserId = fetchTodo.find(e => e.userId)
+//   console.log()
+if(findLoginId.saveUserId === findUserId.userId){
+        for (let i = 0; i < fetchTodo.length; i++) {
+            fetchTodo[i];
         }
-      });
+        console.log(fetchTodo)
+    }
+
+}
+function changeStatus(){
+             
 }

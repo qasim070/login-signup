@@ -107,6 +107,7 @@ ul#list li#liText{
 ul#list li#liText p {
   flex-grow: 15;
   text-align: left;
+  margin-bottom: 0 !important;
 }
 ul#list li#liText button{
   flex-grow:1 ;
