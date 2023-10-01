@@ -132,3 +132,10 @@ div#noData span {
   margin: 0 10px;
   font-size: 25px;
 }
+.logout {
+  position: fixed;
+  right: -18px;
+  top: 50%;
+  z-index: 1000;
+  transform: rotate(90deg);
+}

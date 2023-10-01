@@ -177,7 +177,7 @@ function addToDo(event) {
         });
         localStorage.setItem('todoList', JSON.stringify(toDoItemList));
         toDoItem.value = "";
-        displayTodo();
+        // displayTodo();
     }
 }
 
@@ -221,7 +221,8 @@ function displayTodo() {
 function removeTodo(e){
     let fetchData = JSON.parse(localStorage.getItem('userNameForLogin')) || [];
     let toDoItemList = JSON.parse(localStorage.getItem('todoList')) || [];
-    
+    // someArray.splice(x, 1);
+
     
     // confirm("Are you sure you want to delete? " + e.parentNode.lastChild.innerHTML  )
     // swal({
@@ -247,15 +248,36 @@ function deleteAll(){
     let fetchTodo = JSON.parse(localStorage.getItem("todoList"))
     let findLoginId = fetchData.find(e => e.saveUserId)
     let findUserId = fetchTodo.find(e => e.userId)
-//   console.log()
-if(findLoginId.saveUserId === findUserId.userId){
+    //   console.log()
+    // if(findLoginId.saveUserId === findUserId.userId){
         for (let i = 0; i < fetchTodo.length; i++) {
-            fetchTodo[i];
+            fetchTodo.splice(i, i);
+            console.log(JSON.stringify(fetchTodo) +"check kr " + i) 
         }
-        console.log(fetchTodo)
-    }
+    // }
 
 }
 function changeStatus(){
              
+}
+function logOut(){
+    swal({
+        title: "Logout",
+        text: "Are you sure you want to Logout this session?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("You have been logged out ", {
+            icon: "success",
+            timer: 4000,
+          });
+          localStorage.removeItem("userNameForLogin");
+          window.document.location = "index.html";
+        } else {
+          swal("Seems like, You might have accidently pressed Log out button");
+        }
+      });
 }
